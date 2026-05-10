@@ -15,3 +15,6 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=os.getenv("GOOGLE_API_KEY"),
     temperature=0
 )
+google_api_key = os.getenv("GOOGLE_API_KEY")
+
+langsmith_api_key = os.getenv("LANGCHAIN_API_KEY")
