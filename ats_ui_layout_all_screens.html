@@ -1,0 +1,336 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{display:flex;flex-direction:column;gap:2rem;padding:1rem 0}
+.screen-label{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.mock{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-secondary)}
+.mock-bar{background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);padding:6px 12px;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.mock-body{display:flex;min-height:260px}
+.sidebar-m{width:110px;background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);padding:8px 0;flex-shrink:0;display:flex;flex-direction:column;gap:2px}
+.s-logo{padding:6px 10px 8px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:4px;font-size:10px;font-weight:500;color:var(--color-text-info);display:flex;align-items:center;gap:4px}
+.s-logo i{font-size:13px}
+.s-item{padding:6px 10px;font-size:10px;color:var(--color-text-secondary);display:flex;align-items:center;gap:5px;border-left:2px solid transparent}
+.s-item i{font-size:12px}
+.s-item.active{color:var(--color-text-info);background:var(--color-background-info);border-left-color:#185FA5;font-weight:500}
+.main-m{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--color-background-tertiary)}
+.card-m{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px}
+.card-label{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:6px}
+.textarea-m{width:100%;height:40px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:6px;font-size:9px;color:var(--color-text-secondary);padding:4px 6px;resize:none;font-family:inherit}
+.upload-m{border:1px dashed var(--color-border-secondary);border-radius:6px;padding:10px;text-align:center;font-size:9px;color:var(--color-text-tertiary);display:flex;flex-direction:column;align-items:center;gap:3px}
+.upload-m i{font-size:16px;color:var(--color-text-tertiary)}
+.btn-m{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;font-size:9px;font-weight:500;background:#185FA5;color:#E6F1FB;border:none;cursor:default}
+.chip-m{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:var(--color-background-info);color:#0C447C;border:0.5px solid #B5D4F4;border-radius:20px;font-size:9px}
+.row-m{display:flex;gap:8px}
+.col-m{flex:1}
+.mini-card{background:var(--color-background-secondary);border-radius:6px;padding:6px 8px;font-size:9px}
+.mini-card-val{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-top:2px}
+.mini-bar-m{height:3px;background:var(--color-border-tertiary);border-radius:2px;margin-top:3px;overflow:hidden}
+.mini-fill-m{height:100%;border-radius:2px}
+.tag-m{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:20px;font-size:9px;font-weight:500}
+.tag-green{background:#EAF3DE;color:#27500A}
+.tag-amber{background:#FAEEDA;color:#633806}
+.tag-red{background:#FCEBEB;color:#791F1F}
+.tag-blue{background:#E6F1FB;color:#0C447C}
+.acc-m{border:0.5px solid var(--color-border-tertiary);border-radius:6px;overflow:hidden;margin-bottom:4px}
+.acc-head{padding:6px 8px;font-size:9px;font-weight:500;color:var(--color-text-primary);display:flex;align-items:center;justify-content:space-between;background:var(--color-background-primary)}
+.acc-body{padding:6px 8px 8px;background:var(--color-background-secondary);font-size:9px;color:var(--color-text-secondary);line-height:1.6}
+.badge-m{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:500}
+.badge-maybe{background:#FAEEDA;color:#633806}
+.badge-yes{background:#EAF3DE;color:#27500A}
+.badge-no{background:#FCEBEB;color:#791F1F}
+.annot{display:flex;align-items:flex-start;gap:6px;margin-top:4px}
+.annot-dot{width:6px;height:6px;border-radius:50%;background:#185FA5;flex-shrink:0;margin-top:3px}
+.annot-text{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+.annots{display:flex;flex-direction:column;gap:4px;padding:0 4px}
+.screen-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--color-background-info);color:#0C447C;font-size:10px;font-weight:500;margin-right:6px;flex-shrink:0}
+.screen-header{display:flex;align-items:center;margin-bottom:8px}
+.divider-m{height:0.5px;background:var(--color-border-tertiary);margin:6px 0}
+.override-big{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.hr-final-m{display:flex;align-items:center;gap:10px;padding:8px;background:var(--color-background-secondary);border-radius:6px;border:0.5px solid var(--color-border-tertiary)}
+</style>
+
+<h2 class="sr-only">UI layout mockup for all 5 screens of the AI HR ATS system</h2>
+
+<div class="wrap">
+
+  <!-- Screen 1: Job Description -->
+  <div>
+    <div class="screen-header">
+      <span class="screen-num">1</span>
+      <span class="screen-label">Job description tab</span>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="dot" style="background:#E24B4A"></span>
+        <span class="dot" style="background:#EF9F27"></span>
+        <span class="dot" style="background:#639922"></span>
+        <span style="font-size:9px;color:var(--color-text-tertiary);margin-left:8px">AI HR ATS System</span>
+      </div>
+      <div class="mock-body">
+        <div class="sidebar-m">
+          <div class="s-logo"><i class="ti ti-robot" aria-hidden="true"></i>AI HR ATS</div>
+          <div class="s-item active"><i class="ti ti-file-description" aria-hidden="true"></i>Job Description</div>
+          <div class="s-item"><i class="ti ti-chart-pie" aria-hidden="true"></i>AI Score</div>
+          <div class="s-item"><i class="ti ti-user-check" aria-hidden="true"></i>Analysis</div>
+          <div class="s-item"><i class="ti ti-message-question" aria-hidden="true"></i>Questions</div>
+          <div class="s-item"><i class="ti ti-adjustments" aria-hidden="true"></i>HR Override</div>
+        </div>
+        <div class="main-m">
+          <div class="card-m">
+            <div class="card-label">Job description</div>
+            <textarea class="textarea-m" readonly>We are looking for a DevOps Intern to support our engineering team in building, automating, and maintaining cloud-based infrastructure and CI/CD pipelines...</textarea>
+          </div>
+          <div class="card-m">
+            <div class="card-label">Resume upload</div>
+            <div class="upload-zone" style="border:1px dashed var(--color-border-secondary);border-radius:6px;padding:10px;text-align:center;font-size:9px;color:var(--color-text-tertiary);display:flex;flex-direction:column;align-items:center;gap:3px">
+              <i class="ti ti-upload" style="font-size:16px" aria-hidden="true"></i>
+              Drop PDF or click to upload
+            </div>
+            <div style="margin-top:6px">
+              <div class="chip-m"><i class="ti ti-file-type-pdf" style="font-size:11px" aria-hidden="true"></i>Aagam_Jain_Resume.pdf · 60.8 KB <i class="ti ti-check" style="font-size:10px" aria-hidden="true"></i></div>
+            </div>
+          </div>
+          <div><div class="btn-m"><i class="ti ti-sparkles" style="font-size:11px" aria-hidden="true"></i>Analyse with AI</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="annots" style="margin-top:8px">
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Left sidebar — 5 tab navigation, always visible</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">JD textarea + resume textarea or PDF upload</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">One "Analyse with AI" button triggers all 3 Claude API calls</div></div>
+    </div>
+  </div>
+
+  <!-- Screen 2: AI Score -->
+  <div>
+    <div class="screen-header">
+      <span class="screen-num">2</span>
+      <span class="screen-label">AI score tab</span>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="dot" style="background:#E24B4A"></span>
+        <span class="dot" style="background:#EF9F27"></span>
+        <span class="dot" style="background:#639922"></span>
+        <span style="font-size:9px;color:var(--color-text-tertiary);margin-left:8px">AI HR ATS System</span>
+      </div>
+      <div class="mock-body">
+        <div class="sidebar-m">
+          <div class="s-logo"><i class="ti ti-robot" aria-hidden="true"></i>AI HR ATS</div>
+          <div class="s-item"><i class="ti ti-file-description" aria-hidden="true"></i>Job Description</div>
+          <div class="s-item active"><i class="ti ti-chart-pie" aria-hidden="true"></i>AI Score</div>
+          <div class="s-item"><i class="ti ti-user-check" aria-hidden="true"></i>Analysis</div>
+          <div class="s-item"><i class="ti ti-message-question" aria-hidden="true"></i>Questions</div>
+          <div class="s-item"><i class="ti ti-adjustments" aria-hidden="true"></i>HR Override</div>
+        </div>
+        <div class="main-m">
+          <div class="card-m">
+            <div class="card-label">AI generated score</div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+                <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Score ring 65">
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="var(--color-border-tertiary)" stroke-width="6"/>
+                  <circle cx="32" cy="32" r="26" fill="none" stroke="#185FA5" stroke-width="6" stroke-dasharray="163.4" stroke-dashoffset="57.2" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+                  <text x="32" y="29" text-anchor="middle" font-size="13" font-weight="500" fill="var(--color-text-primary)">65</text>
+                  <text x="32" y="40" text-anchor="middle" font-size="8" fill="var(--color-text-secondary)">/100</text>
+                </svg>
+                <span class="badge-m badge-maybe">Maybe</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;flex:1;min-width:180px">
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Skills</div><div class="mini-card-val" style="font-size:12px">8/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:80%;background:#185FA5"></div></div></div>
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Experience</div><div class="mini-card-val" style="font-size:12px">6/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:60%;background:#BA7517"></div></div></div>
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Projects</div><div class="mini-card-val" style="font-size:12px">7/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:70%;background:#185FA5"></div></div></div>
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Education</div><div class="mini-card-val" style="font-size:12px">8/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:80%;background:#3B6D11"></div></div></div>
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Certs</div><div class="mini-card-val" style="font-size:12px">0/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:0%;background:#A32D2D"></div></div></div>
+                <div class="mini-card"><div style="font-size:9px;color:var(--color-text-tertiary)">Semantic</div><div class="mini-card-val" style="font-size:12px">7/10</div><div class="mini-bar-m"><div class="mini-fill-m" style="width:70%;background:#0F6E56"></div></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="row-m">
+            <div class="col-m card-m"><div class="card-label">JD match</div><div style="font-size:18px;font-weight:500;color:#BA7517">33%</div><div style="font-size:9px;color:var(--color-text-tertiary)">skills matched</div></div>
+            <div class="col-m card-m"><div class="card-label">Confidence</div><div style="font-size:18px;font-weight:500">Medium</div><div style="font-size:9px;color:var(--color-text-tertiary)">model confidence</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annots" style="margin-top:8px">
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">SVG donut ring — fills to total_score / 100</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">6 sub-score cards in a 3×2 grid, each with a mini progress bar</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">JD match % and confidence level as two stat cards below</div></div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Candidate Analysis -->
+  <div>
+    <div class="screen-header">
+      <span class="screen-num">3</span>
+      <span class="screen-label">Candidate analysis tab</span>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="dot" style="background:#E24B4A"></span>
+        <span class="dot" style="background:#EF9F27"></span>
+        <span class="dot" style="background:#639922"></span>
+        <span style="font-size:9px;color:var(--color-text-tertiary);margin-left:8px">AI HR ATS System</span>
+      </div>
+      <div class="mock-body">
+        <div class="sidebar-m">
+          <div class="s-logo"><i class="ti ti-robot" aria-hidden="true"></i>AI HR ATS</div>
+          <div class="s-item"><i class="ti ti-file-description" aria-hidden="true"></i>Job Description</div>
+          <div class="s-item"><i class="ti ti-chart-pie" aria-hidden="true"></i>AI Score</div>
+          <div class="s-item active"><i class="ti ti-user-check" aria-hidden="true"></i>Analysis</div>
+          <div class="s-item"><i class="ti ti-message-question" aria-hidden="true"></i>Questions</div>
+          <div class="s-item"><i class="ti ti-adjustments" aria-hidden="true"></i>HR Override</div>
+        </div>
+        <div class="main-m">
+          <div class="card-m">
+            <div class="card-label">Strengths</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span class="tag-m tag-green"><i class="ti ti-check" style="font-size:9px" aria-hidden="true"></i>Artificial Intelligence</span>
+              <span class="tag-m tag-green"><i class="ti ti-check" style="font-size:9px" aria-hidden="true"></i>Algorithms</span>
+              <span class="tag-m tag-green"><i class="ti ti-check" style="font-size:9px" aria-hidden="true"></i>Data Structures</span>
+              <span class="tag-m tag-green"><i class="ti ti-check" style="font-size:9px" aria-hidden="true"></i>Computer Networks</span>
+              <span class="tag-m tag-green"><i class="ti ti-check" style="font-size:9px" aria-hidden="true"></i>Operating Systems</span>
+            </div>
+          </div>
+          <div class="card-m">
+            <div class="card-label">Missing skills</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <span class="tag-m tag-amber"><i class="ti ti-alert-triangle" style="font-size:9px" aria-hidden="true"></i>Cloud Tech</span>
+              <span class="tag-m tag-amber"><i class="ti ti-alert-triangle" style="font-size:9px" aria-hidden="true"></i>System Reliability</span>
+              <span class="tag-m tag-red"><i class="ti ti-certificate-off" style="font-size:9px" aria-hidden="true"></i>No Certifications</span>
+            </div>
+          </div>
+          <div class="card-m">
+            <div class="card-label">AI analysis summary</div>
+            <div style="font-size:9px;color:var(--color-text-secondary);line-height:1.6">The candidate has a strong CS foundation with solid AI and automation project work. Key gaps include no cloud platform exposure and zero certifications — essential for this DevOps role. Recommend a technical interview with mentorship offered on cloud.</div>
+            <div style="margin-top:6px;display:flex;gap:5px">
+              <span class="tag-m tag-blue">Consider for internship</span>
+              <span class="tag-m tag-amber">Needs cloud training</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annots" style="margin-top:8px">
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Strengths as green pill tags — from scoreData.strengths array</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Missing skills as amber/red pills — from scoreData.missing_skills</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">3-paragraph AI summary text rendered below as a card</div></div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Interview Questions -->
+  <div>
+    <div class="screen-header">
+      <span class="screen-num">4</span>
+      <span class="screen-label">Interview questions tab</span>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="dot" style="background:#E24B4A"></span>
+        <span class="dot" style="background:#EF9F27"></span>
+        <span class="dot" style="background:#639922"></span>
+        <span style="font-size:9px;color:var(--color-text-tertiary);margin-left:8px">AI HR ATS System</span>
+      </div>
+      <div class="mock-body">
+        <div class="sidebar-m">
+          <div class="s-logo"><i class="ti ti-robot" aria-hidden="true"></i>AI HR ATS</div>
+          <div class="s-item"><i class="ti ti-file-description" aria-hidden="true"></i>Job Description</div>
+          <div class="s-item"><i class="ti ti-chart-pie" aria-hidden="true"></i>AI Score</div>
+          <div class="s-item"><i class="ti ti-user-check" aria-hidden="true"></i>Analysis</div>
+          <div class="s-item active"><i class="ti ti-message-question" aria-hidden="true"></i>Questions</div>
+          <div class="s-item"><i class="ti ti-adjustments" aria-hidden="true"></i>HR Override</div>
+        </div>
+        <div class="main-m">
+          <div class="card-m">
+            <div class="card-label">AI generated interview questions</div>
+            <div class="acc-m">
+              <div class="acc-head"><span><i class="ti ti-folder" style="font-size:11px;margin-right:4px" aria-hidden="true"></i>Introduction & Background</span><i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+              <div class="acc-body">
+                1. Can you introduce yourself and tell us about your background?<br>
+                2. What motivated you to apply for this DevOps internship?<br>
+                3. How did you become interested in automation?
+              </div>
+            </div>
+            <div class="acc-m">
+              <div class="acc-head"><span><i class="ti ti-folder" style="font-size:11px;margin-right:4px" aria-hidden="true"></i>Technical Skills</span><i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+            </div>
+            <div class="acc-m">
+              <div class="acc-head"><span><i class="ti ti-folder" style="font-size:11px;margin-right:4px" aria-hidden="true"></i>Project Experience</span><i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+            </div>
+            <div class="acc-m">
+              <div class="acc-head"><span><i class="ti ti-folder" style="font-size:11px;margin-right:4px" aria-hidden="true"></i>AI & Machine Learning</span><i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+            </div>
+            <div class="acc-m">
+              <div class="acc-head"><span><i class="ti ti-folder" style="font-size:11px;margin-right:4px" aria-hidden="true"></i>Behavioral</span><i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="annots" style="margin-top:8px">
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Accordion list — one row per category from the AI response</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">First category auto-expanded; click any header to toggle open/close</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">All questions come from Claude's generateQuestions() API call</div></div>
+    </div>
+  </div>
+
+  <!-- Screen 5: HR Override -->
+  <div>
+    <div class="screen-header">
+      <span class="screen-num">5</span>
+      <span class="screen-label">HR override tab</span>
+    </div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="dot" style="background:#E24B4A"></span>
+        <span class="dot" style="background:#EF9F27"></span>
+        <span class="dot" style="background:#639922"></span>
+        <span style="font-size:9px;color:var(--color-text-tertiary);margin-left:8px">AI HR ATS System</span>
+      </div>
+      <div class="mock-body">
+        <div class="sidebar-m">
+          <div class="s-logo"><i class="ti ti-robot" aria-hidden="true"></i>AI HR ATS</div>
+          <div class="s-item"><i class="ti ti-file-description" aria-hidden="true"></i>Job Description</div>
+          <div class="s-item"><i class="ti ti-chart-pie" aria-hidden="true"></i>AI Score</div>
+          <div class="s-item"><i class="ti ti-user-check" aria-hidden="true"></i>Analysis</div>
+          <div class="s-item"><i class="ti ti-message-question" aria-hidden="true"></i>Questions</div>
+          <div class="s-item active"><i class="ti ti-adjustments" aria-hidden="true"></i>HR Override</div>
+        </div>
+        <div class="main-m">
+          <div class="card-m">
+            <div class="card-label">Adjust score</div>
+            <div class="override-big">72</div>
+            <input type="range" min="0" max="100" value="72" step="1" style="width:100%;margin:6px 0;accent-color:#185FA5" aria-label="override score"/>
+            <div style="height:3px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden"><div style="width:72%;height:100%;background:#185FA5;border-radius:2px"></div></div>
+          </div>
+          <div class="card-m">
+            <div class="card-label">Reason for override</div>
+            <textarea class="textarea-m" style="height:32px" readonly>Candidate shows strong potential in AI; cloud skills can be trained on the job.</textarea>
+          </div>
+          <div class="hr-final-m">
+            <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Final score ring">
+              <circle cx="24" cy="24" r="19" fill="none" stroke="var(--color-border-tertiary)" stroke-width="5"/>
+              <circle cx="24" cy="24" r="19" fill="none" stroke="#185FA5" stroke-width="5" stroke-dasharray="119.4" stroke-dashoffset="33.4" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+              <text x="24" y="22" text-anchor="middle" font-size="10" font-weight="500" fill="var(--color-text-primary)">72</text>
+              <text x="24" y="31" text-anchor="middle" font-size="7" fill="var(--color-text-secondary)">/100</text>
+            </svg>
+            <div>
+              <span class="badge-m badge-maybe">Maybe</span>
+              <div style="font-size:9px;color:var(--color-text-tertiary);margin-top:4px">Reviewed by HR Panel</div>
+              <div style="font-size:9px;color:var(--color-text-secondary);margin-top:4px;font-style:italic">AI: Override is reasonable given strong AI background.</div>
+            </div>
+          </div>
+          <div><div class="btn-m" style="background:#185FA5"><i class="ti ti-device-floppy" style="font-size:11px" aria-hidden="true"></i>Save HR Decision</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="annots" style="margin-top:8px">
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Slider updates the big number and the final ring in real time</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Mandatory reason textarea — shows error border if empty on save</div></div>
+      <div class="annot"><div class="annot-dot"></div><div class="annot-text">Save triggers Claude's validateOverride() → italic AI comment appears below</div></div>
+    </div>
+  </div>
+
+</div>

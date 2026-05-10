@@ -1,17 +1,23 @@
 from config import llm
 from jd_model import JDModel
 
-structured_llm = llm.with_structured_output(JDModel)
+structured_llm = llm.with_structured_output(JDModel, method="json_mode")
 
 
 def jd_agent(jd_text):
-
     prompt = f"""
-    Extract:
+    Extract structured hiring requirements from this job description.
+    You must return the response in JSON format.
 
-    - Skills
-    - Experience
-    - Qualifications
+    Return:
+    - skills
+    - experience
+    - qualifications
+    - certifications
+
+    Rules:
+    - Use concise phrases.
+    - If a field is not present, return an empty string or empty list.
 
     JD:
     {jd_text}

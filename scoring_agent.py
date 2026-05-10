@@ -1,63 +1,92 @@
 import numpy as np
+
 from config import llm
 from score_model import ScoreModel
 
-structured_llm = llm.with_structured_output(ScoreModel)
+structured_llm = llm.with_structured_output(ScoreModel, method="json_mode")
+
 
 def embedding_similarity(jd_emb, resume_emb):
     similarity = np.dot(jd_emb, resume_emb) / (
-        np.linalg.norm(jd_emb) *
-        np.linalg.norm(resume_emb)
+        np.linalg.norm(jd_emb) * np.linalg.norm(resume_emb)
     )
     return round(float(similarity) * 100, 2)
 
+
 def jd_match_score(jd_skills, resume_skills):
+    jd_set = {skill.lower() for skill in jd_skills}
+    resume_set = {skill.lower() for skill in resume_skills}
 
-    jd_set = set([s.lower() for s in jd_skills])
-    resume_set = set([s.lower() for s in resume_skills])
-
-    if len(jd_set) == 0:
+    if not jd_set:
         return 0
 
     match = len(jd_set.intersection(resume_set)) / len(jd_set)
-
     return round(match * 100, 2)
 
-def scoring_agent(jd,
-                   resume,
-                   jd_emb,
-                   resume_emb):
 
-    semantic_score = embedding_similarity(jd_emb, resume_emb)
+def normalize_ten_point_score(value):
+    return round(max(0.0, min(10.0, float(value))), 1)
+
+
+def semantic_score_to_ten_point_scale(similarity_score):
+    return normalize_ten_point_score(similarity_score / 10)
+
+
+def total_score_from_components(score):
+    return round(
+        (score.skills_score * 3.5)
+        + (score.experience_score * 2.5)
+        + (score.project_score * 1.5)
+        + (score.education_score * 1.0)
+        + (score.certification_score * 0.5)
+        + (score.semantic_score * 1.0),
+        1,
+    )
+
+
+def recommendation_from_total(total_score):
+    if total_score >= 75:
+        return "Hire"
+    if total_score >= 55:
+        return "Maybe"
+    return "Reject"
+
+
+def confidence_from_scores(total_score, jd_match):
+    if total_score >= 75 and jd_match >= 65:
+        return "High"
+    if total_score >= 55:
+        return "Medium"
+    return "Low"
+
+
+def scoring_agent(jd, resume, jd_emb, resume_emb):
+    semantic_similarity = embedding_similarity(jd_emb, resume_emb)
 
     jd_skills = getattr(jd, "skills", [])
     resume_skills = getattr(resume, "skills", [])
-
     jd_match = jd_match_score(jd_skills, resume_skills)
 
     prompt = f"""
     You are an ATS scoring engine.
+    You must return the response in JSON format.
 
-    Evaluate candidate using this rubric:
+    Evaluate the candidate with these weighted categories:
+    - skills_score
+    - experience_score
+    - project_score
+    - education_score
+    - certification_score
 
-    Skills Match: 35%
-    Experience Match: 25%
-    Projects/Relevance: 15%
-    Education: 10%
-    Certifications: 5%
-    Semantic Similarity: 10%
+    Additional context:
+    - semantic similarity percentage: {semantic_similarity}
+    - JD skill match percentage: {jd_match}
 
     JOB DESCRIPTION:
     {jd}
 
     CANDIDATE RESUME:
     {resume}
-
-    SEMANTIC SIMILARITY SCORE:
-    {semantic_score}
-
-    JD MATCH SCORE (skill overlap):
-    {jd_match}
 
     Return:
     - skills_score
@@ -66,20 +95,26 @@ def scoring_agent(jd,
     - education_score
     - certification_score
     - semantic_score
-    - total_score
-    - recommendation
     - strengths
     - weaknesses
-    - confidence_level
 
     Rules:
-    - Scores must be between 0 and 10
-    - total_score out of 100
-    - recommendation: Hire / Maybe / Reject
+    - All scores must be between 0 and 10.
+    - strengths and weaknesses should be short phrases.
+    - semantic_score should reflect the overall relevance on a 0 to 10 scale.
     """
 
     response = structured_llm.invoke(prompt)
 
+    response.skills_score = normalize_ten_point_score(response.skills_score)
+    response.experience_score = normalize_ten_point_score(response.experience_score)
+    response.project_score = normalize_ten_point_score(response.project_score)
+    response.education_score = normalize_ten_point_score(response.education_score)
+    response.certification_score = normalize_ten_point_score(response.certification_score)
+    response.semantic_score = semantic_score_to_ten_point_scale(semantic_similarity)
+    response.total_score = total_score_from_components(response)
+    response.recommendation = recommendation_from_total(response.total_score)
+    response.confidence_level = confidence_from_scores(response.total_score, jd_match)
     response.jd_match_score = jd_match
 
     return response

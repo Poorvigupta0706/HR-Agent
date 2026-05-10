@@ -1,20 +1,34 @@
+from analysis_model import AnalysisModel
 from config import llm
+
+structured_llm = llm.with_structured_output(AnalysisModel, method="json_mode")
+
+
 def analysis_agent(jd, resume, score):
     prompt = f"""
-    You are an HR recruiter.
+    You are an HR recruiter analyzing a candidate for a role.
+    You must return the response in JSON format.
 
-    Analyze this candidate.
+    Return:
+    - strengths
+    - weaknesses
+    - missing_skills
+    - summary
+    - hiring_recommendation
+    - interview_focus
+
+    Rules:
+    - The summary should be 2 to 4 sentences.
+    - Keep lists concise and specific to the candidate.
+    - Base the response on the JD, resume, and ATS score.
 
     JD:
     {jd}
+
     Resume:
     {resume}
+
     Score:
     {score}
-    Give:
-    - strengths
-    - weaknesses
-    - missing skills
-    - hiring recommendation
     """
-    return llm.invoke(prompt).content
+    return structured_llm.invoke(prompt)
