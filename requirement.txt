@@ -1,0 +1,13 @@
+streamlit
+langchain
+langchain-google-genai
+google-generativeai
+sentence-transformers
+scikit-learn
+pandas
+numpy
+pymupdf
+python-docx
+reportlab
+jinja2
+python-dotenv
