@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI HR ATS System</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+</head>
+<body>
+
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <i class="ti ti-robot"></i>
+        <span>AI HR ATS</span>
+      </div>
+      <button class="nav-item active" data-tab="jd">
+        <i class="ti ti-file-description"></i> Job Description
+      </button>
+      <button class="nav-item" data-tab="score">
+        <i class="ti ti-chart-pie"></i> AI Score
+      </button>
+      <button class="nav-item" data-tab="analysis">
+        <i class="ti ti-user-check"></i> Candidate Analysis
+      </button>
+      <button class="nav-item" data-tab="questions">
+        <i class="ti ti-message-question"></i> Interview Questions
+      </button>
+      <button class="nav-item" data-tab="override">
+        <i class="ti ti-adjustments"></i> HR Override
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+      <div id="panel-jd"       class="panel active"></div>
+      <div id="panel-score"    class="panel"></div>
+      <div id="panel-analysis" class="panel"></div>
+      <div id="panel-questions"class="panel"></div>
+      <div id="panel-override" class="panel"></div>
+    </main>
+
+  </div>
+
+  <script src="api.js"></script>
+  <script src="components/score.js"></script>
+  <script src="components/analysis.js"></script>
+  <script src="components/questions.js"></script>
+  <script src="components/override.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
