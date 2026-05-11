@@ -16,7 +16,7 @@ from analysis import analysis_agent
 from embeddings_agent import embedding_agent
 from interview import interview_agent
 from jd_agent import jd_agent
-from override import log_override, validate_override
+from override_utils import log_override, validate_override
 from resume_agent import resume_agent
 from scoring_agent import scoring_agent
 
