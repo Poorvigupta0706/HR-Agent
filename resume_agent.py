@@ -22,7 +22,7 @@ def resume_agent(resume_text):
     Rules:
     - Use short, clean phrases.
     - Keep lists concise and relevant.
-    - If a field is missing, return an empty string or empty list.
+    - If a field is missing, return an empty list [] (or "" for the name field).
 
     Resume:
     {resume_text}

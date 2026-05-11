@@ -17,7 +17,7 @@ def jd_agent(jd_text):
 
     Rules:
     - Use concise phrases.
-    - If a field is not present, return an empty string or empty list.
+    - If a field is not present, return an empty list [].
 
     JD:
     {jd_text}

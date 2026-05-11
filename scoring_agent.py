@@ -14,13 +14,17 @@ def embedding_similarity(jd_emb, resume_emb):
 
 
 def jd_match_score(jd_skills, resume_skills):
-    jd_set = {skill.lower() for skill in jd_skills}
-    resume_set = {skill.lower() for skill in resume_skills}
-
-    if not jd_set:
+    if not jd_skills:
         return 0
 
-    match = len(jd_set.intersection(resume_set)) / len(jd_set)
+    match_count = 0
+    for j_skill in jd_skills:
+        j_lower = j_skill.lower()
+        # Check if the JD skill is a substring of any resume skill, or vice versa
+        if any(j_lower in r.lower() or r.lower() in j_lower for r in resume_skills):
+            match_count += 1
+            
+    match = match_count / len(jd_skills)
     return round(match * 100, 2)
 
 
@@ -63,8 +67,8 @@ def confidence_from_scores(total_score, jd_match):
 def scoring_agent(jd, resume, jd_emb, resume_emb):
     semantic_similarity = embedding_similarity(jd_emb, resume_emb)
 
-    jd_skills = getattr(jd, "skills", [])
-    resume_skills = getattr(resume, "skills", [])
+    jd_skills = jd.get("skills", []) if isinstance(jd, dict) else getattr(jd, "skills", [])
+    resume_skills = resume.get("skills", []) if isinstance(resume, dict) else getattr(resume, "skills", [])
     jd_match = jd_match_score(jd_skills, resume_skills)
 
     prompt = f"""
