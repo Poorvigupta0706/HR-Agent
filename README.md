@@ -15,11 +15,9 @@ The system uses Large Language Models (LLMs), semantic matching, structured AI o
 The AI HR Screening Agent automates the initial candidate screening workflow.
 
 The system accepts:
-
 * Job Descriptions (JD)
 * PDF/DOCX resumes
-* Optional LinkedIn profile data
-
+* 
 It then:
 
 * Extracts structured hiring requirements
@@ -121,70 +119,7 @@ This ensures the AI assists recruiters rather than replacing them.
 ---
 
 # System Architecture
-
-                         ┌──────────────────────┐
-                         │  Job Description     │
-                         │   PDF / Text Input   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │     JD Parser AI     │
-                         │  (LLM + Pydantic)    │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Structured JD Data   │
-                         │ Skills / Experience  │
-                         └──────────┬───────────┘
-                                    │
-        ┌───────────────────────────┼───────────────────────────┐
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│ Resume PDFs    │      │ DOCX Resumes     │      │ LinkedIn Profile │
-└────────┬───────┘      └────────┬─────────┘      └────────┬─────────┘
-         │                        │                         │
-         └────────────────────────┴─────────────────────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Resume Agent AI    │
-                         │ Structured Extraction│
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Structured Candidate │
-                         │       Profiles       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Semantic Matching AI │
-                         │ Embeddings + LLM     │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Scoring Engine       │
-                         │ JD Match Score       │
-                         │ Explainable AI       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Ranked Shortlist     │
-                         │ Hire / No-Hire       │
-                         │ Strengths & Gaps     │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Human-in-the-Loop    │
-                         │ HR Review Dashboard  │
-                         └──────────────────────┘
+<img width="1024" height="1536" alt="ChatGPT Image May 11, 2026, 03_53_09 PM" src="https://github.com/user-attachments/assets/af3a7860-1a3a-40fd-80fb-53c9f0322f8f" />
 
 ## Workflow Summary
 
