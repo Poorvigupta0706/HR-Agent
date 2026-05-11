@@ -125,39 +125,85 @@ This ensures the AI assists recruiters rather than replacing them.
 
 # System Architecture
 
-                ┌────────────────────┐
-                │ Job Description    │
-                └─────────┬──────────┘
-                          │
-                    JD Parsing Agent
-                          │
-                          ▼
-                Structured JD Output
+# AI HR Screening Agent — System Architecture
 
 
-Resume PDFs/DOCX/LinkedIn
-              │
-              ▼
-      Resume Parsing Agent
-              │
-              ▼
-   Structured Candidate Data
-              │
-              ▼
-     Semantic Matching Engine
-              │
-              ▼
-       Scoring & Ranking
-              │
-              ▼
-      Explainable AI Layer
-              │
-              ▼
-       HR Review Dashboard
+                         ┌──────────────────────┐
+                         │  Job Description     │
+                         │   PDF / Text Input   │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │     JD Parser AI     │
+                         │  (Structured Output) │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Structured JD Data   │
+                         │ Skills / Experience  │
+                         └──────────┬───────────┘
+                                    │
+        ┌───────────────────────────┼───────────────────────────┐
+        │                           │                           │
+        ▼                           ▼                           ▼
+┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│ Resume PDFs    │      │ DOCX Resumes     │      │ LinkedIn Profile │
+└────────┬───────┘      └────────┬─────────┘      └────────┬─────────┘
+         │                        │                         │
+         └────────────────────────┴─────────────────────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │   Resume Agent AI    │
+                         │ Structured Extraction│
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Structured Candidate │
+                         │       Profiles       │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Semantic Matching AI │
+                         │ Embeddings + LLM     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Scoring Engine       │
+                         │ JD Match Score       │
+                         │ Explainable AI       │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Ranked Shortlist     │
+                         │ Hire / No-Hire       │
+                         │ Strengths & Gaps     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │ Human-in-the-Loop    │
+                         │ HR Review Dashboard  │
+                         └──────────────────────┘
 ```
 
----
+## Workflow Summary
 
+1. Job Description is uploaded and parsed using the JD Parser AI.
+2. Resumes and LinkedIn profiles are ingested and converted into structured candidate profiles.
+3. Semantic Matching AI compares candidates against JD requirements using embeddings and LLM reasoning.
+4. The Scoring Engine generates JD Match Scores, strengths, weaknesses, and explainable insights.
+5. Candidates are ranked and shortlisted automatically.
+6. HR teams review recommendations through the Human-in-the-Loop dashboard before final decisions.
+
+
+ 
 # Scoring Rubric
 
 | Dimension                  | Weight |
@@ -322,89 +368,6 @@ SQLite caching is used to:
 * Lower inference cost
 
 ---
-
-# Example Workflow
-
-# AI HR Screening Agent — System Architecture
-
-
-                         ┌──────────────────────┐
-                         │  Job Description     │
-                         │   PDF / Text Input   │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │     JD Parser AI     │
-                         │  (Structured Output) │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Structured JD Data   │
-                         │ Skills / Experience  │
-                         └──────────┬───────────┘
-                                    │
-        ┌───────────────────────────┼───────────────────────────┐
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-│ Resume PDFs    │      │ DOCX Resumes     │      │ LinkedIn Profile │
-└────────┬───────┘      └────────┬─────────┘      └────────┬─────────┘
-         │                        │                         │
-         └────────────────────────┴─────────────────────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │   Resume Agent AI    │
-                         │ Structured Extraction│
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Structured Candidate │
-                         │       Profiles       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Semantic Matching AI │
-                         │ Embeddings + LLM     │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Scoring Engine       │
-                         │ JD Match Score       │
-                         │ Explainable AI       │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Ranked Shortlist     │
-                         │ Hire / No-Hire       │
-                         │ Strengths & Gaps     │
-                         └──────────┬───────────┘
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │ Human-in-the-Loop    │
-                         │ HR Review Dashboard  │
-                         └──────────────────────┘
-```
-
-## Workflow Summary
-
-1. Job Description is uploaded and parsed using the JD Parser AI.
-2. Resumes and LinkedIn profiles are ingested and converted into structured candidate profiles.
-3. Semantic Matching AI compares candidates against JD requirements using embeddings and LLM reasoning.
-4. The Scoring Engine generates JD Match Scores, strengths, weaknesses, and explainable insights.
-5. Candidates are ranked and shortlisted automatically.
-6. HR teams review recommendations through the Human-in-the-Loop dashboard before final decisions.
-
-
----
-
 # Example Output
 
 ```json
