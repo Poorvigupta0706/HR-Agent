@@ -3,7 +3,7 @@ from typing import List
 class ResumeModel(BaseModel):
     name: str
     skills: List[str]
-    experience: str
+    experience: List[str]
     education: List[str]
     projects: List[str]
     certifications: List[str]

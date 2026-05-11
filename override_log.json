@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-05-10T16:07:34.082416",
+    "candidate_name": "Daksh Jain",
+    "pdf_source": "C:\\Users\\dell\\PycharmProjects\\HR-Agent\\dataset\\Daksh_Jain_FlowCV_Resume_2026-04-11 (2) (1).pdf",
+    "field": "project_score",
+    "old_score": 7,
+    "new_score": 9,
+    "hr_reason": "Strong project demo during interview",
+    "llm_validation": {
+      "valid": true,
+      "summary": "HR manager overridden score due to impressive project demo",
+      "risk": "Low"
+    },
+    "updated_total": 88.0,
+    "recommendation": "Hire"
+  }
+]
