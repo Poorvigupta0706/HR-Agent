@@ -345,23 +345,11 @@ SQLite caching is used to:
 ---
 # Example Output
 
-```json
-{
-  "candidate": "John Doe",
-  "jd_match_score": 87,
-  "strengths": [
-    "Strong NLP experience",
-    "Production ML deployment"
-  ],
-  "missing_skills": [
-    "Kubernetes",
-    "AWS Certification"
-  ],
-  "recommendation": "Hire"
-}
-```
-
----
+<img width="1920" height="1080" alt="Screenshot (274)" src="https://github.com/user-attachments/assets/0b59d339-9bc9-43c2-84b8-0a56a38064d4" />
+<img width="1920" height="1080" alt="Screenshot (278)" src="https://github.com/user-attachments/assets/357e1f3f-f7b1-4cc9-8dd3-28850b84aecb" />
+<img width="1920" height="1080" alt="Screenshot (277)" src="https://github.com/user-attachments/assets/43c98f1b-a1b2-45e9-a425-ba9c9e5a5487" />
+<img width="1920" height="1080" alt="Screenshot (276)" src="https://github.com/user-attachments/assets/56b98ed3-6247-4c61-b7b6-e05ea0e7c22f" />
+<img width="1920" height="1080" alt="Screenshot (275)" src="https://github.com/user-attachments/assets/4994cb47-8f01-4b3d-989b-d395e80ff4c6" />
 
 # Novelty & Innovation
 
@@ -408,8 +396,3 @@ The AI HR Screening Agent combines LLMs, semantic search, explainable AI, and st
 Rather than replacing recruiters, the platform empowers HR teams with faster, smarter, and more transparent candidate evaluation workflows.
 
 ---
-
-# Author
-
-AI HR Screening Agent Prototype
-Built for intelligent, explainable, and human-centric recruitment workflows.
