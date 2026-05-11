@@ -32,3 +32,5 @@ score = scoring_agent(
 )
 print("\n===== ATS SCORE =====\n")
 print(score)
+print("JD MATCH SCORE:", score.jd_match_score)
+print("TOTAL SCORE:", score.total_score)
