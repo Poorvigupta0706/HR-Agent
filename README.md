@@ -108,12 +108,9 @@ Each candidate receives a semantic JD compatibility score based on:
 * Semantic similarity
 * LLM reasoning
 
----
-
 ## Human-in-the-Loop Recruitment
 
 Recruiters can:
-
 * Override AI recommendations
 * Flag candidate profiles
 * Add review comments
@@ -125,9 +122,6 @@ This ensures the AI assists recruiters rather than replacing them.
 
 # System Architecture
 
-# AI HR Screening Agent — System Architecture
-
-
                          ┌──────────────────────┐
                          │  Job Description     │
                          │   PDF / Text Input   │
@@ -136,7 +130,7 @@ This ensures the AI assists recruiters rather than replacing them.
                                     ▼
                          ┌──────────────────────┐
                          │     JD Parser AI     │
-                         │  (Structured Output) │
+                         │  (LLM + Pydantic)    │
                          └──────────┬───────────┘
                                     │
                                     ▼
@@ -191,7 +185,6 @@ This ensures the AI assists recruiters rather than replacing them.
                          │ Human-in-the-Loop    │
                          │ HR Review Dashboard  │
                          └──────────────────────┘
-```
 
 ## Workflow Summary
 
@@ -201,8 +194,6 @@ This ensures the AI assists recruiters rather than replacing them.
 4. The Scoring Engine generates JD Match Scores, strengths, weaknesses, and explainable insights.
 5. Candidates are ranked and shortlisted automatically.
 6. HR teams review recommendations through the Human-in-the-Loop dashboard before final decisions.
-
-
  
 # Scoring Rubric
 
@@ -216,39 +207,30 @@ This ensures the AI assists recruiters rather than replacing them.
 | Communication & Leadership | 10%    |
 
 The weighted scores produce:
-
 * Overall Match Percentage
 * Candidate Ranking
 * Hire / No-Hire Recommendation
 * Confidence Score
-
 ---
-
 # AI & LLM Workflow
 
 ## Structured Output Validation
 
 The system uses:
-
 * Pydantic
 * LangChain Structured Outputs
 * JSON Mode
-
 This ensures all AI responses are:
-
 * Machine-readable
 * Consistent
 * Validated
 * Production-ready
-
 ---
 
 ## Resume Parsing Agent
 
 Converts unstructured resumes into structured candidate profiles using AI.
-
 Extracts:
-
 * Skills
 * Experience
 * Education
@@ -258,13 +240,10 @@ Extracts:
 * Weaknesses
 
 ---
-
 ## JD Parsing Agent
 
 Converts unstructured job descriptions into validated hiring intelligence.
-
 Extracts:
-
 * Required skills
 * Experience expectations
 * Qualifications
@@ -275,9 +254,7 @@ Extracts:
 # Security & Reliability
 
 ## Hallucination Reduction
-
 Uses:
-
 * Structured outputs
 * Pydantic validation
 * JSON schema enforcement
@@ -286,7 +263,6 @@ Uses:
 ---
 
 ## API Key Security
-
 Sensitive API keys are managed using:
 
 * `.env`
@@ -314,7 +290,6 @@ Final hiring decisions remain under recruiter control.
 # LangSmith Integration
 
 LangSmith is used for:
-
 * LLM tracing
 * Prompt monitoring
 * Debugging
